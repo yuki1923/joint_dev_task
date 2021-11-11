@@ -93,6 +93,7 @@ print("#####q8#####" . PHP_EOL);
 $programming_languages = ["php", "ruby", "python", "javascript"];
 
 // 以下に回答を記載
+$programming_languages = array_map('ucfirst', $programming_languages);
 $upper_case_programming_languages = [];
 $upper_case_programming_languages = array_map('strtoupper', $programming_languages);
 
