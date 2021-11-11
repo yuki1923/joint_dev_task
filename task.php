@@ -107,6 +107,11 @@ print("#####q9#####" . PHP_EOL);
 $names = ["田中", "佐藤", "佐々木", "高橋"];
 
 // 以下に回答を記載
+foreach ($names as $key => $name) {
+    $names[$key] = '会員No.' . ($key + 1)  . $name;
+}
+
+print_r($names);
 
 echo PHP_EOL;
 
@@ -114,13 +119,37 @@ print("#####q10#####" . PHP_EOL);
 $foods = ["いか", "たこ", "うに", "しゃけ", "うにぎり", "うに軍艦", "うに丼", "高級なうに"];
 
 // 以下に回答を記載
+foreach ($foods as $food) {
+    if (strpos($food, 'うに') === false) {
+        echo $food . ':' . 'まぁまぁ好きです' . PHP_EOL;
+    } else {
+        echo $food . ':' . '好物です' . PHP_EOL;
+    }
+}
 
 echo PHP_EOL;
 
 print("#####q11#####" . PHP_EOL);
 $sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]];
+$result = [];
 
 // 以下に回答を記載
+foreach ($sports as $key => $sport) {
+    if (is_array($sport)) {
+        $result = array_merge($result, $sport);
+    } else {
+        $result[] = $sport;
+    }
+}
+
+$result = array_unique($result);
+$result = array_values($result);
+
+echo 'ユーザーの趣味一覧' . PHP_EOL;
+foreach ($result as $key => $sport) {
+    echo 'No' . ($key + 1) . $sport . PHP_EOL;
+}
+
 
 echo PHP_EOL;
 
@@ -128,6 +157,7 @@ print("#####q12#####" . PHP_EOL);
 $data = ["user" => ["name" => "satou", "age" => 33]];
 
 // 以下に回答を記載
+print_r($data['user']['name']);
 
 echo PHP_EOL;
 
@@ -136,6 +166,8 @@ $user_data = ["name" => "神里", "age" => 31, "address" => "埼玉"];
 $update_data = ["age" => 32, "address" => "沖縄"];
 
 // 以下に回答を記載
+$user_data = array_merge($user_data, $update_data);
+print_r($user_data);
 
 echo PHP_EOL;
 
@@ -143,6 +175,8 @@ print("#####q14#####" . PHP_EOL);
 $data = ["name" => "satou", "age" => 33, "address" => "saitama", "hobby" => "soccer", "email" => "hoge@fuga.com"];
 
 // 以下に回答を記載
+$result = array_values($data);
+print_r($result);
 
 echo PHP_EOL;
 
@@ -151,6 +185,18 @@ $data1 = ["name" => "saitou", "hobby" => "soccer", "age" => 33, "role" => "admin
 $data2 = ["name" => "yamada", "hobby" => "baseball", "role" => "normal"];
 
 // 以下に回答を記載
+function array_key_age_exist($key, $array)
+{
+    if (array_key_exists($key, $array)) {
+        echo 'OK' . PHP_EOL;
+    } else {
+        echo 'NG' . PHP_EOL;
+    }
+}
+
+array_key_age_exist('age', $data1);
+array_key_age_exist('age', $data2);
+
 
 echo PHP_EOL;
 
@@ -163,6 +209,9 @@ $users = [
 ];
 
 // 以下に回答を記載
+foreach ($users as $user) {
+    echo '私の名前は' . $user['name'] . 'です。' . '年齢は' . $user['age'] . '歳です。' . PHP_EOL;
+}
 
 echo PHP_EOL;
 
