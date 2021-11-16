@@ -303,17 +303,55 @@ class Human
 {
 
     // コードを追加
+    private $name;
+    private $age;
 
+    public function __construct($human_name, $human_age)
+    {
+        $this->name = $human_name;
+        $this->age = $human_age;
+    }
+    public function get_name()
+    {
+        return $this->name;
+    }
+    public function get_age()
+    {
+        return $this->age;
+    }
 }
 
 class Zoo
 {
 
     // コードを追加
+    private $name;
+    private $fee;
+    public function __construct($zoo_name, $entry_fee)
+    {
+        $this->name = $zoo_name;
+        $this->fee = $entry_fee;
+    }
 
+    public function info_entry_fee($human)
+    {
+        $human_age = $human->get_age();
+        $human_name = $human->get_name();
+
+        if ($human_age >= 0 && $human_age <= 5) {
+            echo $human_name . 'さんの入場料金は' . $this->fee['infant'] . '円です。' . PHP_EOL;
+        } elseif ($human_age >= 6 && $human_age <= 12) {
+            echo $human_name . 'さんの入場料金は' . $this->fee['children'] . '円です。' . PHP_EOL;
+        } elseif ($human_age >= 13 && $human_age <= 64) {
+            echo $human_name . 'さんの入場料金は' . $this->fee['adult'] . '円です。' . PHP_EOL;
+        } elseif ($human_age >= 65 && $human_age <= 120) {
+            echo $human_name . 'さんの入場料金は' . $this->fee['senior'] . '円です。' . PHP_EOL;
+        }
+    }
 }
 
 $zoo = new Zoo("旭山動物園", ["infant" => 0, "children" => 400, "adult" => 800, "senior" => 500]);
+
 
 $human1 = new Human("たま", 3);
 $human2 = new Human("ゆたぼん", 10);
@@ -327,3 +365,21 @@ foreach ($humans as $human) {
 }
 
 echo PHP_EOL;
+
+print("#####q21#####" . PHP_EOL);
+
+for ($i = 1; $i < 31; $i++) {
+    if ($i % 21 === 0) {
+        echo 'FizzHoge' . PHP_EOL;
+    } elseif ($i % 15 === 0) {
+        echo 'FizzBuzz' . PHP_EOL;
+    } elseif ($i % 7 === 0) {
+        echo 'Hoge' . PHP_EOL;
+    } elseif ($i % 5 === 0) {
+        echo 'Buzz' . PHP_EOL;
+    } elseif ($i % 3 === 0) {
+        echo 'Fizz' . PHP_EOL;
+    } else {
+        echo $i . PHP_EOL;
+    }
+}
