@@ -369,7 +369,11 @@ echo PHP_EOL;
 print("#####q21#####" . PHP_EOL);
 
 for ($i = 1; $i < 31; $i++) {
-    if ($i % 21 === 0) {
+    if ($i % 105 === 0) {
+        echo 'FizzBuzzHoge';
+    } elseif ($i % 35 === 0) {
+        echo 'BuzzHoge';
+    } elseif ($i % 21 === 0) {
         echo 'FizzHoge' . PHP_EOL;
     } elseif ($i % 15 === 0) {
         echo 'FizzBuzz' . PHP_EOL;
