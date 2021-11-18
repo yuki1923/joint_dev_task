@@ -303,21 +303,13 @@ class Human
 {
 
     // コードを追加
-    private $name;
-    private $age;
+    public $name;
+    public $age;
 
-    public function __construct($human_name, $human_age)
+    public function __construct($visitor_name, $visitor_age)
     {
-        $this->name = $human_name;
-        $this->age = $human_age;
-    }
-    public function get_name()
-    {
-        return $this->name;
-    }
-    public function get_age()
-    {
-        return $this->age;
+        $this->name = $visitor_name;
+        $this->age = $visitor_age;
     }
 }
 
@@ -327,25 +319,23 @@ class Zoo
     // コードを追加
     private $name;
     private $fee;
-    public function __construct($zoo_name, $entry_fee)
+    public function __construct($zoo_name, $zoo_entry_fee)
     {
         $this->name = $zoo_name;
-        $this->fee = $entry_fee;
+        $this->fee = $zoo_entry_fee;
     }
 
-    public function info_entry_fee($human)
-    {
-        $human_age = $human->get_age();
-        $human_name = $human->get_name();
 
-        if ($human_age >= 0 && $human_age <= 5) {
-            echo $human_name . 'さんの入場料金は' . $this->fee['infant'] . '円です。' . PHP_EOL;
-        } elseif ($human_age >= 6 && $human_age <= 12) {
-            echo $human_name . 'さんの入場料金は' . $this->fee['children'] . '円です。' . PHP_EOL;
-        } elseif ($human_age >= 13 && $human_age <= 64) {
-            echo $human_name . 'さんの入場料金は' . $this->fee['adult'] . '円です。' . PHP_EOL;
-        } elseif ($human_age >= 65 && $human_age <= 120) {
-            echo $human_name . 'さんの入場料金は' . $this->fee['senior'] . '円です。' . PHP_EOL;
+    public function info_entry_fee(Human $human)
+    {
+        if ($human->age >= 0 && $human->age <= 5) {
+            echo $human->name . 'さんの入場料金は' . $this->fee['infant'] . '円です。' . PHP_EOL;
+        } elseif ($human->age >= 6 && $human->age <= 12) {
+            echo $human->name . 'さんの入場料金は' . $this->fee['children'] . '円です。' . PHP_EOL;
+        } elseif ($human->age >= 13 && $human->age <= 64) {
+            echo $human->name . 'さんの入場料金は' . $this->fee['adult'] . '円です。' . PHP_EOL;
+        } elseif ($human->age >= 65 && $human->age <= 120) {
+            echo $human->name . 'さんの入場料金は' . $this->fee['senior'] . '円です。' . PHP_EOL;
         }
     }
 }
